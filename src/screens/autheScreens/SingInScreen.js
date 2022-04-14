@@ -21,7 +21,7 @@ function  SingInScreen (){
 
 
 const emailChange=(val)=>{
-    if(val.trim().length>=4) {
+    if(val.length>=4) {
         setData({
             ...data,
             email: val,
@@ -39,7 +39,7 @@ const emailChange=(val)=>{
     }
 };
 const passwordChange=(val)=>{
-    if(val.trim().length>=6){
+    if(val.length>=6){
         setData({
             ...data,
             password:val,
@@ -62,7 +62,7 @@ const updateSecureTextEntry = () => {
 };
 
 const handleValidUser=(val)=>{
-    if(val.trim().length>=4){
+    if(val.length>=4){
         setData({
             ...data,
             isValidUser:true
@@ -88,7 +88,7 @@ const foundUser = DataOne.filter( item =>
    console.log('email  :'  +email + ' pwd : ' + password);
    console.log(foundUser.length);
    if ( foundUser.length == 1 ) { 
-    navigation.navigate("Drawer")
+    navigation.navigate("Welcom")
 }
 else{
   Alert.alert('user invalide');

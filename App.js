@@ -6,7 +6,7 @@ import {View,Text,StyleSheet,StatusBar} from 'react-native';
 import SingInScreen from './src/screens/autheScreens/SingInScreen'
 
 import { NavigationContainer,DefaultTheme,DarkTheme,useTheme } from "@react-navigation/native";
-
+import LoadingAnimationScreen from "./src/components/CircleAnimation";
 
 import { createStackNavigator } from "@react-navigation/stack";
 
@@ -17,7 +17,7 @@ import Signup from "./src/screens/autheScreens/Signup";
 import { EventRegister } from "react-native-event-listeners";
 import GridItemScreen from "./src/screens/GridItemScreen";
 import DetailOne from "./src/screens/DetailOne";
-
+import AnimationWelcom from "./src/components/AnimationWelcom";
 
 const Stack=createStackNavigator();
 export default function App(){
@@ -43,8 +43,10 @@ export default function App(){
         backgroundColor='#6c757d'
       />
 <NavigationContainer theme={appTheme}>
-  <Stack.Navigator initialRouteName="Login">
-   
+  <Stack.Navigator initialRouteName="load">
+  <Stack.Screen name="load" component={LoadingAnimationScreen}  options={{headerShown: false}}/>
+
+  <Stack.Screen name="Welcom" component={AnimationWelcom}  options={{headerShown: false}}/>
     <Stack.Screen name="Login" component={SingInScreen}  options={{headerShown: false}}/>
     <Stack.Screen name="inscrit" component={Signup} options={{headerShown: false}}/>
     <Stack.Screen name="Accueil" component={RootClientTabs} options={{headerShown: false}}/>

@@ -24,7 +24,7 @@ export default function DetailOne({navigation,route}) {
 
 
   
-  const {id,one}=route.params 
+  const {id,one}=route.params
 
   return (
     <View style={styles.container}>

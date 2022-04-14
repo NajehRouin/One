@@ -1,15 +1,18 @@
 import { StyleSheet, Text, View,ScrollView, TouchableOpacity,Linking ,ImageBackground,Image} from 'react-native'
 import React ,{useState}from 'react'
-import { DataOne } from '../../Data'
+import Data, { DataOne } from '../../Data'
+
 import OneHearder from '../components/OneHearder'
 import { Icon } from 'react-native-elements';
 import { Rating } from 'react-native-ratings';
 import imageOne from '../../assets/images/maps-i11111t.png'
 import QRCode from 'react-native-qrcode-svg';
 import { useTheme } from "@react-navigation/native";
+
  export default function MyAccountScreen({navigation}){
    const state = {
-        text: 'mapsit.info@gmail.com',
+       text: DataOne[0].login.toString() ,
+      
       };
       const {colors} =useTheme();
 
@@ -87,15 +90,17 @@ import { useTheme } from "@react-navigation/native";
                                  type="material-community"
                                
                                  size={26}
+                                 style={{marginLeft:10}}
                              
                              />
-                             <Text style={styles.txtName}>mpas-it</Text>
+                             <Text style={styles.txtName}>maps-it</Text>
 
                              <Icon
                                  name="pencil"
                                  type="material-community"
                                
                                  size={26}
+                                 
                              
                              />
 
@@ -109,7 +114,7 @@ import { useTheme } from "@react-navigation/native";
                                  type="material-community"
                                  color='red'
                                  size={26}
-                             
+                                 style={{flex: 2}}
                              
                              />
                                  <Text style={styles.txtAdress}>monastir</Text>
@@ -124,6 +129,7 @@ import { useTheme } from "@react-navigation/native";
                                  type="material-community"
                                  color='red'
                                  size={26}
+                                 style={{flex: 2}}
                              
                              
                              />
@@ -132,6 +138,7 @@ import { useTheme } from "@react-navigation/native";
                                
  
                            
+
                                </View>
  
                                <View style={ {  justifyContent:'space-between',marginTop:5, alignContent:'center',alignItems:'center',flexDirection:'row' }}>
@@ -141,6 +148,7 @@ import { useTheme } from "@react-navigation/native";
                                                 name="phone"
                                                 color="green"
                                                 size={35}
+                                                style={{marginLeft:10}}
 
                                                 /> 
                                             </TouchableOpacity>
@@ -172,7 +180,7 @@ import { useTheme } from "@react-navigation/native";
  
                     
 
-                    <View style={{marginTop:50,marginBottom:90,margin:80}}>
+                    <View style={{marginTop:50,marginBottom:90, alignItems:"center"}}>
                         <QRCode
                             value={state.text.length > 0 ? state.text : "health app"}
                             size={200}
@@ -250,13 +258,15 @@ import { useTheme } from "@react-navigation/native";
  marginTop:10,
  alignContent:'center',
  alignItems:'center',
- marginRight:115
+
  },
  text3:{
  fontSize:15,
  //color:colors.grey3
  },
  view4:{
+  flex: 1,
+  padding: 10,
  flexDirection:'row',
  alignItems:"center",
  marginTop:5,
@@ -264,9 +274,9 @@ import { useTheme } from "@react-navigation/native";
  },
  txtName:{
  //fontFamily:fonts.android.bold,
- fontSize:25,
+ fontSize:20,
  color:'#032D56',
- marginRight:203
+
  },
  
  txt_transaction:{
@@ -275,7 +285,7 @@ import { useTheme } from "@react-navigation/native";
    color:'#7C7E82',
    marginLeft:5,
    alignItems:'center',
-   marginRight:160
+
    },
  
  txtScore:{
@@ -287,28 +297,38 @@ import { useTheme } from "@react-navigation/native";
  
  txtAdress:{
    //fontFamily:fonts.android.bold,
-   fontSize:25,
+   flex: 2,
+   fontSize:20,
    color:'#032D56',
-   marginRight:220
+   textAlign:'center',
+   justifyContent:'center',
+  
    },
  
  
    txtlogin:{
      //fontFamily:fonts.android.bold,
-     fontSize:25,
+     flex: 2,
+     fontSize:20,
      color:'#032D56',
-     marginRight:112
+     textAlign:'center',
+     justifyContent:'center',
+   
      },
      txt_numTel:{
         //fontFamily:fonts.android.bold,
-        fontSize:25,
+        flex: 2,
+        fontSize:20,
         color:'#032D56',
-        marginRight:200
+        textAlign:'center',
+        justifyContent:'center',
+      
+       
         },
  
      txt_titre_service:{
        //fontFamily:fonts.android.bold,
-       fontSize:16,
+       fontSize:10,
        color:'#7C7E82',
     
        },
@@ -319,27 +339,6 @@ import { useTheme } from "@react-navigation/native";
        color:'#032D56',
        marginRight:20
        },
- 
- text5:{
- //fontFamily:fonts.android.bold,
- fontSize:13,
- //color:colors.grey3,
- marginLeft:2,
- marginRight:5
- },
- text6:{
- //fontFamily:fonts.android.bold,
- fontSize:13,
- //color:colors.grey3,
- marginLeft:0,
- 
- },
- 
- 
- 
- 
- 
- 
  
  
  

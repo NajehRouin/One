@@ -2,7 +2,7 @@ import React,{useState} from "react";
 
 import {View,Text,StyleSheet,TouchableOpacity,Image,
     ScrollView, TextInput,FlatList, 
-   Dimensions,Keyboard,Alert,Modal,Pressable} from 'react-native';
+   Dimensions,Keyboard,Alert,Modal,Pressable,} from 'react-native';
 
     import {parameters} from '../global/styles'
 
@@ -191,7 +191,7 @@ const HomeScreen = ({navigation}) =>{
                        
                         { listItem &&
                            < ScrollView horizontal={true}> 
-                                <View>
+                                <View style={{ width:SCREEN_WIDTH }}>
                                      
                                 <FlatList
                    // style={{marginTop:10,marginBottom:10 }}
@@ -224,6 +224,7 @@ const HomeScreen = ({navigation}) =>{
                                           navigation.navigate("DetailOne",{id:index,one:item.name })
                                         }}
                                   
+                                        
                                     />
                                     
                                     </TouchableOpacity>

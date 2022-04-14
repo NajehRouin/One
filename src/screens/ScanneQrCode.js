@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Button } from 'react-native';
+import { Text, View, StyleSheet, Button ,TouchableOpacity,ToastAndroid} from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { Icon } from 'react-native-elements';
 
-export default function ScanneQrCode() {
+import { DataOne } from '../../Data';
+
+export default function ScanneQrCode({navigation}) {
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
-
+  const [dataScanee,setDataScanne]=useState(' ');
+  const [ButtonVisible,setButtonVisible]=useState(false);
   useEffect(() => {
     (async () => {
       const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -15,7 +19,17 @@ export default function ScanneQrCode() {
 
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`${data} a été scanné!`);
+    //alert(`${data} a été scanné!`);
+    setDataScanne(JSON.stringify(data))
+    if (data!=DataOne[0].login.toString()){
+      ToastAndroid.show('Aucun code QR valide détecté', ToastAndroid.SHORT);
+      setDataScanne(' ');
+      //setButtonVisible(false);
+    }
+    else{
+      setButtonVisible(true);
+    }
+  
   };
 
   if (hasPermission === null) {
@@ -26,27 +40,87 @@ export default function ScanneQrCode() {
   }
 
   return (
-    <View style={styles.container}>
-        
+  
+ 
+               
+    <View  style={styles.conatiner}>
+      
+      <TouchableOpacity style={{...styles.view2retour}}>
+                     <Icon
+                         name="arrow-left"
+                         type="material-community"
+                         size={26}
+                         onPress={()=>navigation.goBack()}
+                     
+                     />
+ 
+                 </TouchableOpacity>
+      <View style={styles.scanne}>
       <BarCodeScanner
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
-        style={StyleSheet.absoluteFillObject}
+        //style={StyleSheet.absoluteFill}
+        style={{width:300,height:300}}
       />
-      {scanned && <Button title={'Tap to Scan Again'} onPress={() => setScanned(false)} />}
+      <Text> Scanner un code OR One </Text>
+       
+      {scanned && 
+     
+      
+    
+      <Button  title={'Réessayer'}  color="#026efd" onPress={() => {setScanned(false);
+        setDataScanne(' ');
+        setButtonVisible(false);
+      }} />
+   
+      }
+   
+    </View>
+    <View style={{alignItems:'center', alignContent:'center',justifyContent: 'center'}}>
+    <Text style={{marginTop:10, }}> {dataScanee} </Text>
+    <View style={styles.buttonStyle2}>
+      { ButtonVisible && 
+        < Button    title={'Créer une transaction'} color='#12A88C'/>
+    
+      }
+      </View>
+
+    </View>
+    
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    width:200,
-    marginLeft:80,
+
+  conatiner:{
+    flex:1,
+  },
+  scanne: {
+  
+  
     alignItems:'center',
-    marginTop:-200,
-    marginBottom:10,
+    
     alignContent:'center',
  
     justifyContent: 'center',
   },
+  view2retour:{
+    marginTop:30,
+    margin:15,
+    width:40,
+    height:40,
+    // backgroundColor:colors.cardbackground,
+    alignItems:"center",
+    justifyContent: 'center',
+    borderRadius:20,
+    },
+
+    buttonStyle2:{
+      marginTop:30,
+      marginLeft:15,
+      marginRight:15
+    },
+    buttonDesign2:{
+      backgroundColor:'#12A88C'
+    },
 });
